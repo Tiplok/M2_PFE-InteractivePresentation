@@ -35,7 +35,7 @@ body(
 
           br,
 
-          h3("Nicolas Vasseur", a(attr("href") := "https://github.com/Tiplok", "Tiplok")),
+          h3("Nicolas Vasseur", a(attr("href") := "https://github.com/Tiplok", " -Tiplok")),
 
           p(small("Master 2 e-services"))
 
@@ -77,7 +77,7 @@ body(
 
           br,
 
-          h3("Rahal Badr", a(attr("href") := "https://github.com/rbadr", "rbadr")),
+          h3("Rahal Badr", a(attr("href") := "https://github.com/rbadr", " -rbadr")),
 
           p(small("Master 2 IAGL : Infrastructures Applicatives et Génie Logiciel"))
 
