@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/interactivepresentationpfe -Dhttp.port=${PORT}
+web: target/start -Dhttp.port=$PORT $JAVA_OPTS
