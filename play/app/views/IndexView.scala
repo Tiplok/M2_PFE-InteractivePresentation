@@ -153,7 +153,8 @@ body(
 
   ),
           script(src := "assets/javascripts/lib/head.min.js")),
-          script(src := "assets/javascripts/reveal.js"))
+          script(src := "assets/javascripts/reveal.js")),
+          script("Reveal.initialize();")
     )
   }
 
