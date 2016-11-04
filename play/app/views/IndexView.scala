@@ -15,9 +15,9 @@ object IndexView {
 
     title("Présentation exemple avec reveal.js"),
 
-    link(rel := "stylesheet", href := "play/public/stylesheets/reveal.css"),
-    link(rel := "stylesheet", href := "play/public/stylesheets/theme/blood.css"),
-    link(rel := "stylesheet", href := "play/public/stylesheets/lib/zenburn.css")
+    link(rel := "stylesheet", href := "assets/stylesheets/reveal.css"),
+    link(rel := "stylesheet", href := "assets/stylesheets/theme/blood.css"),
+    link(rel := "stylesheet", href := "assets/stylesheets/lib/zenburn.css")
     ),
 
 body(
@@ -152,8 +152,8 @@ body(
     )
 
   ),
-          script(src := "@routes.Assets.versioned("javascripts/lib/head.min.js")"),
-          script(src := "play/public/javascripts/reveal.js")))
+          script(src := "assets/javascripts/lib/head.min.js")),
+          script(src := "assets/javascripts/reveal.js"))
     )
   }
 
