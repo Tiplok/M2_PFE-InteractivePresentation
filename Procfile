@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/playserver -Dhttp.port=${PORT} ${JAVA_OPTS}
+web: target/universal/stage/bin/M2_PFE-InteractivePresentation -Dhttp.port=${PORT}
