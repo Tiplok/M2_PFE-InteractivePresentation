@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/M2_PFE-InteractivePresentation -Dhttp.port=${PORT}
+web: target/universal/stage/bin/interactivepresentationpfe -Dhttp.port=${PORT}
