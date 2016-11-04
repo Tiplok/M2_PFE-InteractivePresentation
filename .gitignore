@@ -5,7 +5,7 @@ libexec/
 .js
 *.sjsir
 logs/
-
+.idea/
 *.class
 *.log
 
