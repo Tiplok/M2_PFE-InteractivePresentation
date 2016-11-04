@@ -24,3 +24,5 @@ addSbtPlugin("org.scala-js" % "sbt-scalajs" % "0.6.10")
 addSbtPlugin("com.vmunier" % "sbt-play-scalajs" % "0.3.1")
 
 addSbtPlugin("com.geirsson" % "sbt-scalafmt" % "0.2.10")
+
+addSbtPlugin("com.heroku" % "sbt-heroku" % "0.5.1")
