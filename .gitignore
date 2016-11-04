@@ -4,7 +4,6 @@ libexec/
 .cache-tests
 .js
 *.sjsir
-play/public/javascripts/
 logs/
 
 *.class
