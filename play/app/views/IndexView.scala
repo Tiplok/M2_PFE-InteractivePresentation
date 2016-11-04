@@ -127,9 +127,7 @@ body(
 
             """I love traveling and meeting new people from different cultures, that's the reason I joined an international association when I moved to Lille,
 
-            I wanted to meet new friends from all over europe. I love discovering new cultures."""),
-
-          p(a(attr("href") := "#/5", "Go Back Up"))
+            I wanted to meet new friends from all over europe. I love discovering new cultures.""")
 
         )
 
