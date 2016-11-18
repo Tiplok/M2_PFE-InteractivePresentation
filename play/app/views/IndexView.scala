@@ -4,26 +4,41 @@ object IndexView {
   import scalatags.Text.all._
   import scalatags.Text.tags2.section
   import scalatags.Text.tags2.title
+  import dsl.Dsl
+
+  def imgBox(source: String, text: String) =
+    div(
+      img(src:=source),
+      div(
+        p(text)
+      )
+    )
+
+  def presentation(titleText: String, array: scalatags.Text.Modifier*) =
+    html(
+      head(
+        meta(charset := "utf-8"),
+        meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
+
+        title(titleText),
+
+        link(rel := "stylesheet", href := "assets/stylesheets/reveal.css"),
+        link(rel := "stylesheet", href := "assets/stylesheets/theme/blood.css"),
+        link(rel := "stylesheet", href := "assets/stylesheets/lib/zenburn.css")
+      ),
+
+      body(
+        div(`class` := "reveal",
+          div(`class` := "slides", array)
+        ),
+        script(src := "assets/javascripts/lib/head.min.js")
+      ),
+      script(src := "assets/javascripts/reveal.js")
+    )
+
 
   def apply(message: String) = {
-    Seq(html(
-  head(
-    meta(charset := "utf-8"),
-    meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
-    meta(name := "description", content := "Une présentation exemple en HTML5 avec le framework Reveal.js"),
-    meta(name := "author", content := "Rahal Badr & Nicolas Vasseur"),
-
-    title("Présentation exemple avec reveal.js"),
-
-    link(rel := "stylesheet", href := "assets/stylesheets/reveal.css"),
-    link(rel := "stylesheet", href := "assets/stylesheets/theme/blood.css"),
-    link(rel := "stylesheet", href := "assets/stylesheets/lib/zenburn.css")
-    ),
-
-body(
-    div(`class` := "reveal",
-
-    div(`class` := "slides",
+    Seq(presentation("Présentation exemple avec reveal.js",
 
       section(h1("Welcome")),
 
@@ -147,13 +162,10 @@ body(
 
       )
 
-    )
+    ), // Fermeture presentation(
+    script("Reveal.initialize();")
 
-  ),
-          script(src := "assets/javascripts/lib/head.min.js")),
-          script(src := "assets/javascripts/reveal.js")),
-          script("Reveal.initialize();")
-    )
+  ) // Fermeture Seq(
   }
 
 }
