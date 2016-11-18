@@ -6,79 +6,146 @@ object IndexView {
   import scalatags.Text.tags2.title
   import dsl.Dsl
 
-  def imgBox(source: String, text: String) =
-    div(
-      img(src:=source),
-      div(
-        p(text)
-      )
-    )
+  def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) = // Ne pas renommer array en content, provoque un bug
+    Seq(
+      html(
+        head(
+          meta(charset := "utf-8"),
+          meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
 
-  def presentation(titleText: String, array: scalatags.Text.Modifier*) =
-    html(
-      head(
-        meta(charset := "utf-8"),
-        meta(name := "viewport", content := "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"),
+          title(titleText),
 
-        title(titleText),
+          link(rel := "stylesheet", href := "assets/stylesheets/reveal.css"),
+          link(rel := "stylesheet", href := "assets/stylesheets/theme/"+theme+".css"),
+          link(rel := "stylesheet", href := "assets/stylesheets/lib/zenburn.css")
+        ), // Fermeture head
 
-        link(rel := "stylesheet", href := "assets/stylesheets/reveal.css"),
-        link(rel := "stylesheet", href := "assets/stylesheets/theme/blood.css"),
-        link(rel := "stylesheet", href := "assets/stylesheets/lib/zenburn.css")
-      ),
+        body(
+          div(`class` := "reveal",
+            div(`class` := "slides", array)
+          ),
+          script(src := "assets/javascripts/lib/head.min.js")
+        ), // Fermeture body
+        script(src := "assets/javascripts/reveal.js")
+      ), // Fermeture html
+      script("Reveal.initialize();")
+    ) // Fermeture Seq
 
-      body(
-        div(`class` := "reveal",
-          div(`class` := "slides", array)
-        ),
-        script(src := "assets/javascripts/lib/head.min.js")
-      ),
-      script(src := "assets/javascripts/reveal.js")
-    )
+  def slide(content: scalatags.Text.Modifier*) =
+    section(content)
 
+  def title1(content: scalatags.Text.Modifier*) =
+    h1(content)
+
+  def title2(content: scalatags.Text.Modifier*) =
+    h2(content)
+
+  def title3(content: scalatags.Text.Modifier*) =
+    h3(content)
+
+  def title4(content: scalatags.Text.Modifier*) =
+    h4(content)
+
+  def title5(content: scalatags.Text.Modifier*) =
+    h5(content)
+
+  def textLine(content: scalatags.Text.Modifier*) =
+    p(content)
+
+  def emptyLine =
+    br
+
+  def unorderedList(content: scalatags.Text.Modifier*) =
+    ul(content)
+
+  def orderedList(content: scalatags.Text.Modifier*) =
+    ol(content)
+
+  def listItem(content: scalatags.Text.Modifier*) =
+    li(content)
+
+  def alink(content: scalatags.Text.Modifier*) =
+    a(content)
+
+  def tableHead(content: scalatags.Text.Modifier*) =
+    thead(content)
+
+  def tableBody(content: scalatags.Text.Modifier*) =
+    tbody(content)
+
+  def tableLine(content: scalatags.Text.Modifier*) =
+    tr(content)
+
+  def tableBox(content: scalatags.Text.Modifier*) =
+    td(content)
 
   def apply(message: String) = {
-    Seq(presentation("Présentation exemple avec reveal.js",
+    presentation("Présentation exemple avec reveal.js", "blood",
 
-      section(h1("Welcome")),
+      slide(
+        title1("Welcome")
 
-      section(
+      ),
 
-        section(
+      slide(
+        title1("Table"),
+        table(
+          thead(
+            tr(
+              td("Entête 1"),
+              td("Entête 2")
+            )
+          ),
+          tbody(
+            tr(
+              td("test"),
+              td("test1")
+            ),
+            tr(
+              td("toast"),
+              td("taost")
+            )
+          )
+        )
+      ),
 
-          h2("Collaborator Number 1"),
+      slide(
 
-          br,
+        slide(
 
-          h3("Nicolas Vasseur", a(attr("href") := "https://github.com/Tiplok", " -Tiplok")),
+          title2("Collaborator Number 1"),
 
-          p(small("Master 2 e-services"))
+          emptyLine,
+
+          title3("Nicolas Vasseur", alink(attr("href") := "https://github.com/Tiplok", " -Tiplok")),
+
+          textLine(small("Master 2 e-services"))
 
         ),
 
-        section(h2("Who Am I ?"),
+        slide(title2("Who Am I ?"),
 
-          p("My name is Nicolas, I'm 22 and I live in Tourcoing, Northern France.")
-
-        ),
-
-        section(h2("What's my story ?"),
-
-          p("I was born in Tourcoing, city in the north of France. I always live around this place.")
+          textLine("My name is Nicolas, I'm 22 and I live in Tourcoing, Northern France.")
 
         ),
 
-        section(h2("Academic background"),
+        slide(title2("What's my story ?"),
 
-          ul(
+          textLine("I was born in Tourcoing, city in the north of France. I always live around this place.")
 
-            li("2012 : Bachelor of Engineering Science"),
+        ),
 
-            li("2014 : Technology University Degree"),
+        slide(title2("Academic background"),
 
-            li("2015 : Licence Degree in Computer Science"),
+          unorderedList(
 
-            li("Currently : Master 2 in electronic services")
+            listItem("2012 : Bachelor of Engineering Science"),
+
+            listItem("2014 : Technology University Degree"),
+
+            listItem("2015 : Licence Degree in Computer Science"),
+
+            listItem("Currently : Master 2 in electronic services")
 
           )
 
@@ -86,33 +153,33 @@ object IndexView {
 
       ),
 
-      section(
+      slide(
 
-        section(h2("Collaborator Number 2"),
+        slide(title2("Collaborator Number 2"),
 
-          br,
+          emptyLine,
 
-          h3("Rahal Badr", a(attr("href") := "https://github.com/rbadr", " -rbadr")),
+          title3("Rahal Badr", alink(attr("href") := "https://github.com/rbadr", " -rbadr")),
 
-          p(small("Master 2 IAGL : Infrastructures Applicatives et Génie Logiciel"))
-
-        ),
-
-        section(h2("Who Am I ?"),
-
-          p("My name is Badr, I'm 24 years old and I Live in Lille, Northern France.")
+          textLine(small("Master 2 IAGL : Infrastructures Applicatives et Génie Logiciel"))
 
         ),
 
-        section(h2("What's my story ?"),
+        slide(title2("Who Am I ?"),
 
-          p("I was born in Rabat, the capital of Morocco. I lived there untill my 22nd birthday.")
+          textLine("My name is Badr, I'm 24 years old and I Live in Lille, Northern France.")
 
         ),
 
-        section(h2("Why did I leave ?"),
+        slide(title2("What's my story ?"),
 
-          p(
+          textLine("I was born in Rabat, the capital of Morocco. I lived there untill my 22nd birthday.")
+
+        ),
+
+        slide(title2("Why did I leave ?"),
+
+          textLine(
 
             """I got my Licence degree in Computer science and mathematics, then I decided it was time to look for new opportunities abroad.
 
@@ -120,25 +187,25 @@ object IndexView {
 
         ),
 
-        section(h2("Academic Background"),
+        slide(title2("Academic Background"),
 
-          ul(
+          unorderedList(
 
-            li("2010 : Bachelor in mathematical science, Rabat-Morocco."),
+            listItem("2010 : Bachelor in mathematical science, Rabat-Morocco."),
 
-            li("2014 : Licence Degree in mathematics and computer science, Rabat-Morocco."),
+            listItem("2014 : Licence Degree in mathematics and computer science, Rabat-Morocco."),
 
-            li("2015 : Master 1 Degree in computer science, Reims-France."),
+            listItem("2015 : Master 1 Degree in computer science, Reims-France."),
 
-            li("Currently : Master 2 in software engineering, Lille-France")
+            listItem("Currently : Master 2 in software engineering, Lille-France")
 
           )
 
         ),
 
-        section(h2("What do I love in life?"),
+        slide(title2("What do I love in life?"),
 
-          p(
+          textLine(
 
             """I love traveling and meeting new people from different cultures, that's the reason I joined an international association when I moved to Lille,
 
@@ -148,24 +215,22 @@ object IndexView {
 
       ),
 
-      section(attr("data-background") := "http://i.giphy.com/90F8aUepslB84.gif",
+      slide(attr("data-background") := "http://i.giphy.com/90F8aUepslB84.gif",
 
-        h2("What a DUO!")
+        title2("What a DUO!")
 
       ),
 
-      section(css("text-align") := "left",
+      slide(css("text-align") := "left",
 
-        h1("THE END"),
+        title1("THE END"),
 
-        p(a(attr("href") := "https://github.com/rbadr/PFENicolas-Badr", "Our Repo in Github"))
+        textLine(alink(attr("href") := "https://github.com/rbadr/PFENicolas-Badr", "Our Repo in Github"))
 
       )
 
-    ), // Fermeture presentation(
-    script("Reveal.initialize();")
+    ) // Fermeture presentation
 
-  ) // Fermeture Seq(
   }
 
 }
