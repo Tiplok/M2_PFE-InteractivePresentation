@@ -4,8 +4,8 @@ object IndexView {
   import scalatags.Text.all._
   import scalatags.Text.tags2.section
   import scalatags.Text.tags2.title
-  import dsl.Dsl
 
+  def presentationTitle = "Présentation exemple avec reveal.js"
   def presentation(titleText: String, theme: String, array: scalatags.Text.Modifier*) = // Ne pas renommer array en content, provoque un bug
     Seq(
       html(
@@ -79,8 +79,8 @@ object IndexView {
   def tableBox(content: scalatags.Text.Modifier*) =
     td(content)
 
-  def apply(message: String) = {
-    presentation("Présentation exemple avec reveal.js", "blood",
+  def apply(title: String) = {
+    presentation(title, "blood",
 
       slide(
         title1("Welcome")
